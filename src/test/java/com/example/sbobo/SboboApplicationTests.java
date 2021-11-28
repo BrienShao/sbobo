@@ -1,0 +1,13 @@
+package com.example.sbobo;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class SboboApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}
