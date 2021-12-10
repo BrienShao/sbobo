@@ -17,12 +17,12 @@
         <java.version>17</java.version>
     </properties>
     <dependencies>
-        <!--  JPA  -->
+        <!-- JPA -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-        <!--  Web框架  -->
+        <!-- Web框架 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -34,34 +34,55 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
-        <!--  MySQL  -->
+        <!-- MySQL -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <!--  Lombok  -->
+        <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-        <!--  Test  -->
+        <!-- Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!--  fastjson  -->
+        <!-- fastjson -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.58</version>
         </dependency>
-        <!--  参数校验  -->
+        <!-- 参数校验 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <!-- JWT -->
+        <!-- https://jwt.io/ -->
+        <!-- https://jwt.io/libraries -->
+        <!-- https://github.com/jwtk/jjwt -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.11.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.11.2</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>   <!-- or jjwt-gson if Gson is preferred -->
+            <version>0.11.2</version>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
