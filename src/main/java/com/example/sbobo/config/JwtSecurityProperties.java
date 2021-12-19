@@ -26,7 +26,7 @@ public class JwtSecurityProperties {
     private String tokenStartWith;
 
     /**
-     * 必须使用至少88位的Base64对令牌进行编码
+     * 必须使用至少64位的Base64对令牌进行编码
      */
     private String base64Secret;
 

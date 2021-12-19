@@ -7,7 +7,7 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
       url: jdbc:mysql://localhost:3306/sbobo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
       username: root
-      password: 
+      password: 108728
 
       # 初始化配置
       initial-size: 3
@@ -42,16 +42,16 @@ spring:
           show-sql: true
           format_sql: true
 
-  # JWT
-  jwt:
-    header: Authorization
-    # 令牌前缀
-    token-start-with: Bearer
-    # 必须使用最少88位的Base64对该令牌进行编码
-    base64-secret: Zmpqc2Q9ODcyZHNkZjIzM2OkNFJFUkZhMzIzMjQzMlJkaWHzMnIyMzk4dTMyamZra3NXMjMxM1QyMzMmKiZqZUxKRiZeKjFHTExQO0RKODk4NDNqcmUoKGlvZXdqZktKRE8zMnhjY08yS0ZLTlNmZ2hqb3AtPTFSV0VIUkVXRVc=
-    # 令牌过期时间（4小时）
-    token-validity-in-seconds: 14400000
-    # 在线用户key
-    online-key: online-token
-    # 验证码
-    code-key: code-key
+# JWT
+jwt:
+  header: Authorization
+  # 令牌前缀
+  token-start-with: Bearer
+  # 必须使用最少64字节的Base64对该令牌进行编码
+  base64-secret: Zmpqc2Q9ODcyZHNkZjIzM2OkNFJFUkZhMzIzMjQzMlJkaWHzMnIyMzk4dTMyamZra3NXMjMxM1QyMzMmKiZqZUxKRiZeKjFHTExQO0RKODk4NDNqcmUoKGlvZXdqZktKRE8zMnhjY08yS0ZLTlNmZ2hqb3AtPTFSV0VIUkVXRVc=
+  # 令牌过期时间（4小时）
+  token-validity-in-seconds: 14400000
+  # 在线用户key
+  online-key: online-token
+  # 验证码
+  code-key: code-key

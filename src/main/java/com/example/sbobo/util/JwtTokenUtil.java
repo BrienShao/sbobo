@@ -34,6 +34,7 @@ public class JwtTokenUtil implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
+        // 将密钥字符串转换为 SecretKey 实例
         byte[] keyBytes = Decoders.BASE64.decode(jwtSecurityProperties.getBase64Secret());
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }

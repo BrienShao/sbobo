@@ -1,8 +1,13 @@
-package com.example.sbobo.service;
+package com.example.sbobo.service.Impl;
 
 import com.example.sbobo.dto.AuthUserDto;
 import com.example.sbobo.entity.Result;
+import com.example.sbobo.service.AuthService;
+import com.example.sbobo.service.UserService;
+import com.example.sbobo.service.WxMiniProgram;
 import com.example.sbobo.util.JwtTokenUtil;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,9 +15,12 @@ import javax.servlet.http.HttpServletRequest;
  * @author 啵啵
  * @date 2021/12/10
  */
-public class AuthServiceImpl implements AuthService{
+@Service
+public class AuthServiceImpl implements AuthService {
 
+    @Value("${miniProgram.appId")
     private String appId;
+    @Value("${miniProgram.secret")
     private String secret;
 
     private final JwtTokenUtil jwtTokenUtil;
