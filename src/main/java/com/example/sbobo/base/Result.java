@@ -1,4 +1,4 @@
-package com.example.sbobo.entity;
+package com.example.sbobo.base;
 
 import lombok.Data;
 

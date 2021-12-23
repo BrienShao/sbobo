@@ -1,7 +1,7 @@
 package com.example.sbobo.service;
 
 import com.example.sbobo.dto.AuthUserDto;
-import com.example.sbobo.entity.Result;
+import com.example.sbobo.base.Result;
 
 import javax.servlet.http.HttpServletRequest;
 

@@ -1,7 +1,7 @@
 package com.example.sbobo.service.Impl;
 
 import com.example.sbobo.dto.AuthUserDto;
-import com.example.sbobo.entity.Result;
+import com.example.sbobo.base.Result;
 import com.example.sbobo.service.AuthService;
 import com.example.sbobo.service.UserService;
 import com.example.sbobo.service.WxMiniProgram;

@@ -25,7 +25,7 @@ public class User implements Serializable {
     /**
      * 用户ID
      */
-    private Integer userId;
+    private Long id;
     /**
      * 小程序openID
      */
@@ -46,6 +46,7 @@ public class User implements Serializable {
     private String userName;
     /**
      * 密码
+     *
      * @JsonIgnore 在json序列化时将pojo中的一些属性忽略掉，标记在属性或者方法上，返回的json数据即不包含该属性
      */
     @JsonIgnore

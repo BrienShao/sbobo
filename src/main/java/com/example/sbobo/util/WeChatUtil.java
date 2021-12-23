@@ -7,12 +7,10 @@ import org.bouncycastle.util.encoders.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.AlgorithmParameters;
@@ -58,9 +56,9 @@ public class WeChatUtil {
     /**
      * AES 解密
      *
-     * @param content   解密的目标密文
-     * @param keyByte   解密秘钥
-     * @param ivByte    解密算法初始向量
+     * @param content 解密的目标密文
+     * @param keyByte 解密秘钥
+     * @param ivByte  解密算法初始向量
      * @return
      */
     private static byte[] decrypt(byte[] content, byte[] keyByte, byte[] ivByte) {
@@ -88,7 +86,7 @@ public class WeChatUtil {
      * 获取对明文进行补位填充的字节
      *
      * @param count 需要进行填充补位操作的明文字节个数
-     * @return      补齐用的字节数组
+     * @return 补齐用的字节数组
      */
     private static byte[] encode(int count) {
         int amountToPad = BLOCK_SIZE - (count % BLOCK_SIZE);
@@ -107,7 +105,7 @@ public class WeChatUtil {
      * 删除解密后明文的补位字符
      *
      * @param decrypted 解密后的明文
-     * @return          删除补位字符后的明文
+     * @return 删除补位字符后的明文
      */
     private static byte[] decode(byte[] decrypted) {
         int pad = decrypted[decrypted.length - 1];
@@ -120,8 +118,8 @@ public class WeChatUtil {
     /**
      * 将数字转化成 ASCII码 对应的字符，用于对明文进行补码
      *
-     * @param amountToPad   需要转化的数字
-     * @return              转化得到的字符
+     * @param amountToPad 需要转化的数字
+     * @return 转化得到的字符
      */
     private static char charr(int amountToPad) {
         byte target = (byte) (amountToPad & 0xFF);
@@ -165,10 +163,10 @@ public class WeChatUtil {
     /**
      * 解密数据
      *
-     * @param appId         小程序appId
-     * @param encryptData   解密的目标密文
-     * @param sessionKey    解密秘钥
-     * @param iv            解密算法初始向量
+     * @param appId       小程序appId
+     * @param encryptData 解密的目标密文
+     * @param sessionKey  解密秘钥
+     * @param iv          解密算法初始向量
      * @return
      */
     public static String decryptData(String appId, String encryptData, String sessionKey, String iv) {
@@ -183,6 +181,58 @@ public class WeChatUtil {
             String decryptAppid = jsonObject.getJSONObject("watermark").getString("appid");
             if (!appId.equals(decryptAppid)) {
                 result = "";
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 向指定 URL 发送 POST 请求的方法
+     *
+     * @param url        发送请求的 URL
+     * @param jsonObject 请求参数（ json 格式 ）
+     * @return 远程资源响应结果
+     */
+    public static String httpPost(String url, JSONObject jsonObject) {
+        PrintWriter out = null;
+        BufferedReader in = null;
+        String result = "";
+        try {
+            URL realUrl = new URL(url);
+            // 链接到 URL 的 URLConnection 实例
+            URLConnection urlConnection = realUrl.openConnection();
+            // 设置通用的请求属性
+            urlConnection.setRequestProperty("accept", "*/*");
+            urlConnection.setRequestProperty("connection", "keep-Alive");
+            urlConnection.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)");
+            // 发送 POST 请求必须设置如下两行
+            urlConnection.setDoInput(true);
+            urlConnection.setDoOutput(true);
+            // 获取 URLConnection对象 对应的输出流
+            out = new PrintWriter(urlConnection.getOutputStream());
+            // 发送请求参数
+            out.print(jsonObject);
+            // flush 输出流的缓冲
+            out.flush();
+
+            // 定义 BufferedReader 输入流来读取 URL 的响应
+            in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            String line;
+            while ((line = in.readLine()) != null) {
+                result = result.concat(line);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+                if (in != null) {
+                    in.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
         return result;
